@@ -3,8 +3,9 @@ import { Container } from "./styles";
 
 interface ItemListProps {
   items: string[];
+  handleDelete: (item: string) => void;
 }
-export function ItemList({ items }: ItemListProps) {
+export function ItemList({ items, handleDelete }: ItemListProps) {
   return (
     <Container>
       {items.map((item) => (
@@ -12,7 +13,7 @@ export function ItemList({ items }: ItemListProps) {
           key={item}
         >
           {item}
-          <Button color="error">
+          <Button color="error" onClick={() => handleDelete(item)} >
             x
           </Button>
         </li>

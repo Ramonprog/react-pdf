@@ -16,7 +16,7 @@ const style = {
 
 };
 
-export function ModalPdf() {
+export function ModalPdf({ list }: { list: string[] }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -32,7 +32,7 @@ export function ModalPdf() {
       >
         <Box sx={style}>
           <PDFViewer width={'100%'} height={'100%'}>
-            <PdfTemplate />
+            <PdfTemplate items={list} />
           </PDFViewer>
         </Box>
       </Modal>
