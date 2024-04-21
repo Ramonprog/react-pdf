@@ -24,7 +24,7 @@ export function ModalPdf() {
   const { items } = useMarketList()
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Gerar lista</Button>
       <Modal
         open={open}
         onClose={handleClose}

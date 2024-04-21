@@ -51,7 +51,10 @@ export function PdfTemplate({ items }: { items: string[] }) {
       <Page size={'A4'} style={styles.page}>
         <View style={styles.header}>
           <Image src={ListImage} style={styles.image} />
-          <Text>Lista de mercado</Text>
+          <View>
+            <Text>Lista de mercado</Text>
+            <Text>{new Date().toLocaleDateString()}</Text>
+          </View>
         </View>
         <View>
           {items.map((item, index) => (
