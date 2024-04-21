@@ -4,12 +4,14 @@ import { ReactNode, createContext, useState } from 'react';
 type ListContextData = {
   items: string[];
   addItem: (item: string) => void;
+  removeItem: (item: string) => void;
 };
 
 // Crie o contexto
 export const ListContext = createContext<ListContextData>({
   items: [],
   addItem: () => { },
+  removeItem: () => { },
 });
 
 export const ListProvider = ({ children }: { children: ReactNode }) => {
@@ -19,8 +21,12 @@ export const ListProvider = ({ children }: { children: ReactNode }) => {
     setItems(prevItems => [...prevItems, item]);
   };
 
+  const removeItem = (item: string) => {
+    setItems(prevItems => prevItems.filter(i => i !== item));
+  };
+
   return (
-    <ListContext.Provider value={{ items, addItem }}>
+    <ListContext.Provider value={{ items, addItem, removeItem }}>
       {children}
     </ListContext.Provider>
   );

@@ -2,11 +2,7 @@ import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/render
 import ListImage from '../../assets/list.png';
 import { useEffect } from 'react';
 
-interface Props {
-  items: string[];
-
-}
-export function PdfTemplate({ items }: Props) {
+export function PdfTemplate({ items }: { items: string[] }) {
 
   const styles = StyleSheet.create({
     page: {
@@ -18,19 +14,33 @@ export function PdfTemplate({ items }: Props) {
       padding: 10,
       display: 'flex',
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-around'
+      justifyContent: 'center',
+      gap: 20,
+      marginBottom: 20
     },
     image: {
       width: 50,
       height: 50
-    }
+    },
+    listArea: {
+      border: '1px solid #ccc',
+      padding: 8,
+      borderRadius: 5,
+      marginBottom: 5,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    },
 
+    circle: {
+      width: 15,
+      height: 15,
+      borderRadius: 50,
+      border: '1px solid #ccc',
+      marginRight: 5
+    }
   });
 
-  function ItensList() {
-    return items.map((item) => <li>{item}</li>)
-  }
 
   useEffect(() => {
     console.log(items)
@@ -43,9 +53,16 @@ export function PdfTemplate({ items }: Props) {
           <Image src={ListImage} style={styles.image} />
           <Text>Lista de mercado</Text>
         </View>
-
         <View>
-          <ItensList />
+          {items.map((item, index) => (
+            <View style={styles.listArea}>
+              <Text key={index} >
+                {item}
+              </Text>
+              <View style={styles.circle}></View>
+            </View>
+
+          ))}
         </View>
       </Page>
     </Document>

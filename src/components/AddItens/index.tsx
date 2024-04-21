@@ -2,18 +2,17 @@ import { Button, TextField } from '@mui/material';
 
 import { Container } from './styles';
 import { FormEvent, useRef } from 'react';
+import { useMarketList } from '../../hooks/useMarketList';
 
-interface AddItensProps {
-  addList: (item: (prevItems: string[]) => string[]) => void;
-}
 
-export function AddItens({ addList }: AddItensProps) {
+export function AddItens() {
   const currentItem = useRef<HTMLInputElement>(null);
+  const { addItem } = useMarketList();
 
   function handleAddItem(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const itemName = currentItem.current?.value || '';
-    addList((prevItems: string[]) => [...prevItems, itemName]);
+    addItem(itemName);
     currentItem.current && (currentItem.current.value = '');
   }
 
@@ -24,7 +23,5 @@ export function AddItens({ addList }: AddItensProps) {
         <Button variant='contained' type='submit'>Adicionar</Button>
       </Container>
     </form>
-
-
   );
 }

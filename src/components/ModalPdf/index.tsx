@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { PdfTemplate } from '../PdfTemplate';
 import { PDFViewer } from '@react-pdf/renderer';
+import { useMarketList } from '../../hooks/useMarketList';
 
 const style = {
   position: 'absolute',
@@ -16,11 +17,11 @@ const style = {
 
 };
 
-export function ModalPdf({ list }: { list: string[] }) {
+export function ModalPdf() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const { items } = useMarketList()
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
@@ -31,8 +32,8 @@ export function ModalPdf({ list }: { list: string[] }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <PDFViewer width={'100%'} height={'100%'}>
-            <PdfTemplate items={list} />
+          <PDFViewer width={'100%'} height={'100%'} >
+            <PdfTemplate items={items} />
           </PDFViewer>
         </Box>
       </Modal>

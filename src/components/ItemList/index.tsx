@@ -1,11 +1,9 @@
 import { Button } from "@mui/material";
 import { Container } from "./styles";
+import { useMarketList } from "../../hooks/useMarketList";
 
-interface ItemListProps {
-  items: string[];
-  handleDelete: (item: string) => void;
-}
-export function ItemList({ items, handleDelete }: ItemListProps) {
+export function ItemList() {
+  const { removeItem, items } = useMarketList()
   return (
     <Container>
       {items.map((item) => (
@@ -13,7 +11,7 @@ export function ItemList({ items, handleDelete }: ItemListProps) {
           key={item}
         >
           {item}
-          <Button color="error" onClick={() => handleDelete(item)} >
+          <Button color="error" onClick={() => removeItem(item)} >
             x
           </Button>
         </li>
