@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { AddItens } from './components/AddItens'
 import { ModalPdf } from './components/ModalPdf'
+import { ItemList } from './components/ItemList'
 function App() {
   const [marketList, setMarketList] = useState<string[]>([])
   useEffect(() => {
@@ -11,11 +12,7 @@ function App() {
     <>
       <h2>Lista de mercado</h2>
       <AddItens addList={setMarketList} />
-      <ul>
-        {marketList.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      <ItemList items={marketList} />
       <ModalPdf />
     </>
   )
